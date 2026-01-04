@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Clone Repository') {
             steps {
-                git branch: "${BRANCH_NAME}", credentialsId: 'github', url: 'https://github.com/priacc-innovations/version-3.3-prod-.git'
+                git branch: "${BRANCH_NAME}", credentialsId: 'github', url: 'https://github.com/priacc-innovations/version-3.4-prod.git'
             }
         }
 
