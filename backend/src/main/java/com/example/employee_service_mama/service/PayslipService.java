@@ -26,9 +26,9 @@ public class PayslipService {
     private final UserRepository userRepo;
     private final S3Client s3;
 
-    private static final String BUCKET = "teamhub-storage";
+    private static final String BUCKET = "teamhub-storage-new";
     private static final String S3_BASE_URL =
-            "https://teamhub-storage.s3.us-east-1.amazonaws.com/";
+            "https://teamhub-storage-new.s3.ap-south-1.amazonaws.com/";
 
     // --------------------- UPLOAD (ASYNC) ---------------------
     // @Async
