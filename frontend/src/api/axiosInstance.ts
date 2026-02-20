@@ -3,7 +3,7 @@ import axios, { InternalAxiosRequestConfig } from "axios";
 
 const api = axios.create({
   // 🔥 SAME DOMAIN FOR ENTIRE APP
-  baseURL: "https://teamhub.in/api",
+  baseURL: "http://65.2.144.168/api",
   withCredentials: true,
 });
 
