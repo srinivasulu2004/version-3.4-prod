@@ -19,7 +19,7 @@ import java.util.Map;
         origins = {
                 "https://teamhub.in",
                 "http://teamhub.in",
-                "http://65.2.144.168:80",
+                "http://65.2.144.168:80"
         },
         allowCredentials = "true"
 )@RequiredArgsConstructor
@@ -138,4 +138,5 @@ public class AttendanceController {
     }
 
 }
+
 
