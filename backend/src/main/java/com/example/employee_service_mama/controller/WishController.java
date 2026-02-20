@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @CrossOrigin(
         origins = {
-                "http://localhost:5173",
-                "http://127.0.0.1:5173",
+                "http://teamhub.in",
                 "https://teamhub.in"
+                "http://teamhub-ALB-1584591762.ap-south-1.elb.amazonaws.com",
+                "http://65.2.144.168:80"
         },
         allowCredentials = "true"
 )
@@ -33,3 +34,4 @@ public class WishController {
     }
 
 }
+
