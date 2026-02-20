@@ -17,8 +17,8 @@ import java.util.List;
         origins = {
                 "https://teamhub.in",
                 "http://teamhub.in",
-                "http://teamhub-ALB-1584591762.ap-south-1.elb.amazonaws.com",
-                "http://65.2.144.168:80"
+                "http://teamhub-ALB-680655485.ap-south-1.elb.amazonaws.com",
+                "http://15.206.26.130:80"
         },
         allowCredentials = "true"
 )
@@ -100,4 +100,5 @@ public class WalletController {
     }
 
 }
+
 
