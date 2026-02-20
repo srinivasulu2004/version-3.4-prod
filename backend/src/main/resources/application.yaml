@@ -21,9 +21,9 @@ spring:
   # DATASOURCE (PostgreSQL)
   # ===============================
   datasource:
-    url: jdbc:postgresql://localhost:5432/employee_db
-    username: postgres
-    password: admin
+    url: jdbc:postgresql://employee-db.cj44ee48qf66.ap-south-1.rds.amazonaws.com:5432/employee_db
+    username: priaccinnovation
+    password: priaccinnovation
     driver-class-name: org.postgresql.Driver
 
   # ===============================
