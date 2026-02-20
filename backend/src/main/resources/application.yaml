@@ -103,10 +103,10 @@ app:
 # AWS S3 CONFIG
 # ===============================
 aws:
-  access_key: AKIAXAUECRUMHH5CVJFC
-  secret_key: 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
-  region: us-east-1
-  bucket: teamhub-storage
+  access_key: AKIAZGWRIOA7VPQGAYWR
+  secret_key: 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
+  region:  ap-south-1
+  bucket: teamhub-storage-new
 
 
 # ===============================
