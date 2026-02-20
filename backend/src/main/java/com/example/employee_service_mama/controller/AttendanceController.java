@@ -19,6 +19,7 @@ import java.util.Map;
         origins = {
                 "https://teamhub.in",
                 "http://teamhub.in",
+                "http://teamhub-ALB-1584591762.ap-south-1.elb.amazonaws.com",
                 "http://65.2.144.168:80"
         },
         allowCredentials = "true"
@@ -138,5 +139,6 @@ public class AttendanceController {
     }
 
 }
+
 
 
