@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(
         origins = {
                 "http://teamhub.in",
-                "https://teamhub.in"
+                "https://teamhub.in",
                 "http://teamhub-ALB-680655485.ap-south-1.elb.amazonaws.com",
                 "http://15.206.26.130:80"
         },
@@ -34,5 +34,6 @@ public class WishController {
     }
 
 }
+
 
 
