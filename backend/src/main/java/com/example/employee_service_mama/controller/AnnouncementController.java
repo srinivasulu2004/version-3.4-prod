@@ -13,8 +13,7 @@ import java.util.List;
         origins = {
                 "https://teamhub.in",
                 "http://teamhub.in",
-                "http://52.202.113.154:80",
-                "http://127.0.0.1:5173"
+                "http://65.2.144.168:80"
         },
         allowCredentials = "true"
 )@RequestMapping("api/announcements")
@@ -35,3 +34,4 @@ public class AnnouncementController {
         return ResponseEntity.ok(announcements);
     }
 }
+
