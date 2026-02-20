@@ -26,9 +26,8 @@ import java.util.stream.Collectors;
         origins = {
                 "https://teamhub.in",
                 "http://teamhub.in",
-                "http://52.202.113.154:80",
-                "http://127.0.0.1:5173",
-                "http://localhost:5173"
+                "http://teamhub-ALB-1584591762.ap-south-1.elb.amazonaws.com",
+                "http://65.2.144.168:80"
         },
         allowCredentials = "true"
 )public class AttendanceFilterController {
@@ -104,4 +103,5 @@ import java.util.stream.Collectors;
     }
 
 }
+
 
