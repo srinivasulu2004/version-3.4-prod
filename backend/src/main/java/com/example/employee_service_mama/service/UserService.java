@@ -28,9 +28,9 @@ public class UserService {
     private final S3Client s3;
     private final JwtUtil jwtUtil;
 
-    private static final String BUCKET = "teamhub-storage";
+    private static final String BUCKET = "teamhub-storage-new";
     private static final String S3_BASE_URL =
-            "https://teamhub-storage.s3.us-east-1.amazonaws.com/";
+            "https://teamhub-storage-new.s3.ap-south-1.amazonaws.com/";
 
     /* =====================================================
        LOGIN
