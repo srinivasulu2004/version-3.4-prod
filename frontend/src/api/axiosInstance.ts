@@ -3,7 +3,7 @@ import axios, { InternalAxiosRequestConfig } from "axios";
 
 const api = axios.create({
   // 🔥 SAME DOMAIN FOR ENTIRE APP
-  baseURL: "http://teamhub-ALB-680655485.ap-south-1.elb.amazonaws.com/api",
+  baseURL: "http://15.206.26.130/api",
   withCredentials: true,
 });
 
