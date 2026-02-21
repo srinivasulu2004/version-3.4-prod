@@ -6,7 +6,6 @@ import com.example.employee_service_mama.model.Users;
 import com.example.employee_service_mama.service.UserService;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +21,8 @@ import java.util.Map;
                 "https://teamhub.in",
                 "http://teamhub.in",
                 "http://teamhub-ALB-680655485.ap-south-1.elb.amazonaws.com",
-                "http://15.206.26.130"
+                "http://15.206.26.130:80",
+
         },
         allowCredentials = "true"
 )
@@ -30,149 +30,89 @@ public class UserController {
 
     private final UserService userService;
 
-    /* ================= SIGN IN ================= */
-
     @PostMapping("/signin")
     public ResponseEntity<?> signin(@RequestBody Map<String, String> map) {
-        return ResponseEntity.ok(
-                userService.signin(map.get("email"), map.get("password"))
-        );
+        return ResponseEntity.ok(userService.signin(map.get("email"), map.get("password")));
     }
-
-    /* ================= GET USER ================= */
 
     @GetMapping("/{id}")
-    public ResponseEntity<Users> getUser(@PathVariable Integer id) {
-        return ResponseEntity.ok(userService.getUserById(id));
+    public Users getUser(@PathVariable Integer id) {
+        return userService.getUserById(id);
     }
-
-    /* ================= UPDATE PROFILE ================= */
 
     @PutMapping("/update-profile/{id}")
-    public ResponseEntity<Users> updateProfile(
-            @PathVariable Integer id,
-            @RequestBody Users data
-    ) {
-        return ResponseEntity.ok(userService.updateProfile(id, data));
+    public Users updateProfile(@PathVariable Integer id, @RequestBody Users data) {
+        return userService.updateProfile(id, data);
     }
 
-    /* ================= UPLOAD PROFILE PHOTO ================= */
-
-    @PostMapping(
-            value = "/upload-photo/{id}",
-            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
-    )
-    public ResponseEntity<?> uploadPhoto(
+    @PostMapping("/upload-photo/{id}")
+    public Map<String, String> uploadPhoto(
             @PathVariable Integer id,
             @RequestParam("photo") MultipartFile file
     ) {
-
-        if (file == null || file.isEmpty()) {
-            return ResponseEntity.badRequest()
-                    .body(Map.of("error", "File is empty"));
-        }
-
         String url = userService.uploadPhoto(id, file);
-
-        return ResponseEntity.ok(Map.of("url", url));
+        return Map.of("url", url);
     }
-
-    /* ================= ADD EMPLOYEE ================= */
 
     @PostMapping("/add")
-    public ResponseEntity<Users> addEmployee(@RequestBody Users user) {
-        return ResponseEntity.ok(userService.addEmployee(user));
+    public Users addEmployee(@RequestBody Users user) {
+        return userService.addEmployee(user);
     }
-
-    /* ================= LIST USERS ================= */
 
     @GetMapping("/all")
-    public ResponseEntity<List<Users>> getAllUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
+    public List<Users> getAllUsers() {
+        return userService.getAllUsers();
     }
-
-    /* ================= HR UPDATE ================= */
 
     @PutMapping("/hr/update/{id}")
-    public ResponseEntity<Users> updateEmployeeJob(
-            @PathVariable Integer id,
-            @RequestBody Users data
-    ) {
-        return ResponseEntity.ok(
-                userService.updateEmployeeJobDetails(id, data)
-        );
+    public Users updateEmployeeJob(@PathVariable Integer id, @RequestBody Users data) {
+        return userService.updateEmployeeJobDetails(id, data);
     }
-
-    /* ================= BULK ADD ================= */
 
     @PostMapping("/add-bulk")
-    public ResponseEntity<List<Users>> addBulk(
-            @RequestBody List<Users> users
-    ) {
-        return ResponseEntity.ok(
-                userService.addBulkEmployees(users)
-        );
+    public List<Users> addBulk(@RequestBody List<Users> users) {
+        return userService.addBulkEmployees(users);
     }
 
-    /* ================= COUNTS ================= */
-
     @GetMapping("/count")
-    public ResponseEntity<Map<String, Long>> getUserCount() {
-        return ResponseEntity.ok(
-                Map.of("count", userService.getTotalUserCount())
-        );
+    public Map<String, Long> getUserCount() {
+        long count = userService.getTotalUserCount();
+        return Map.of("count", count);
     }
 
     @GetMapping("/present-today")
-    public ResponseEntity<Map<String, Long>> getPresentToday() {
-        return ResponseEntity.ok(
-                Map.of("count", userService.getPresentTodayCount())
-        );
+    public Map<String, Long> getPresentToday() {
+        long count = userService.getPresentTodayCount();
+        return Map.of("count", count);
     }
 
     @GetMapping("/on-leave-today")
-    public ResponseEntity<Map<String, Long>> getOnLeaveToday() {
-        return ResponseEntity.ok(
-                Map.of("count", userService.getOnLeaveTodayCount())
-        );
+    public Map<String, Long> getOnLeaveToday() {
+        long count = userService.getOnLeaveTodayCount();
+        return Map.of("count", count);
     }
-
-    /* ================= PASSWORD RESET ================= */
-
     @PostMapping("/forgot-password")
-    public ResponseEntity<?> forgotPassword(
-            @RequestBody ForgotPasswordRequest request
-    ) {
+    public ResponseEntity<?> forgotPassword(@RequestBody ForgotPasswordRequest request) {
+        System.out.println("📩 Forgot password API triggered with email: " + request.getEmail());
         userService.sendResetOtp(request);
         return ResponseEntity.ok("OTP sent to registered email!");
     }
 
     @PostMapping("/reset-password")
-    public ResponseEntity<?> resetPassword(
-            @RequestBody ResetPasswordRequest request
-    ) {
-        userService.resetPassword(
-                request.getEmail(),
-                request.getOtp(),
-                request.getNewPassword()
-        );
+    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request) {
+        userService.resetPassword(request.getEmail(),request.getOtp(), request.getNewPassword());
         return ResponseEntity.ok("Password updated successfully!");
     }
-
-    /* ================= DELETE USER ================= */
-
-    @DeleteMapping("/delete/{userId}")
-    public ResponseEntity<String> deleteUser(
-            @PathVariable Integer userId
-    ) {
+    @DeleteMapping("delete/{userId}")
+    public ResponseEntity<String> deleteuser(@PathVariable Integer userId){
         userService.deleteuser(userId);
         return ResponseEntity.ok("Successfully deleted");
     }
-
-    /* ================= BIRTHDAYS ================= */
-
+     //for birthdays addes by venkatasagar
     @GetMapping("/birthdays/today")
     public ResponseEntity<List<Users>> getTodaysBirthdays() {
-        return ResponseEntity.ok(userService.getTodaysBirthdays());
+        List<Users> birthdays = userService.getTodaysBirthdays();
+        return ResponseEntity.ok(birthdays);
     }
+
 }
