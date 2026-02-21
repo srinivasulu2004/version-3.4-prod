@@ -4,6 +4,7 @@ services:
   backend:
     build: ./backend
     container_name: backend
+    restart: always   
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://${DB_HOST}:5432/employee_db
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
@@ -26,6 +27,7 @@ services:
   frontend:
     build: ./frontend
     container_name: frontend
+    restart: always  
     depends_on:
       - backend
     volumes:
@@ -34,6 +36,7 @@ services:
   nginx:
     image: nginx:alpine
     container_name: nginx
+    restart: always   
     ports:
       - "80:80"
     volumes:
@@ -45,4 +48,3 @@ services:
 
 volumes:
   frontend:
-
